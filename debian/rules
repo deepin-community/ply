@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+
+# extra args for 'setup.py install'
+export PYBUILD_INSTALL_ARGS=--no-compile
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_test:
+	PYBUILD_SYSTEM=custom PYBUILD_TEST_ARGS="cd {build_dir}/test \
+		&& {interpreter} testlex.py \
+		&& {interpreter} testyacc.py \
+		&& if {interpreter} -c 'from _multiprocessing import SemLock; sl = SemLock(1, 2, 3, \"4\", 5); sl.release()' > /dev/null 2>&1; then \
+			{interpreter} testcpp.py; \
+		   else \
+			echo 'Support for multiprocessing.SemLock missing, skipping testcpp.py'; \
+		   fi \
+		&& /bin/sh cleanup.sh" dh_auto_test
+
+override_dh_auto_build:
+	dh_auto_build
+	pod2man debian/dh_python3-ply > dh_python3-ply.1
+
+override_dh_gencontrol:
+	echo "python3-ply:Provides=$$(PYTHONPATH=. python3 debian/virtual-packages.py python3-ply)" \
+		>> debian/python3-ply.substvars
+	dh_gencontrol
+
+override_dh_compress:
+	dh_compress --exclude=.py

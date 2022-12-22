@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e -u
+
+# Keep the test dir rather than copy to the root of $AUTOPKGTEST_TMP.
+# Upstream scripts add the parent dir to the python path; this way
+# one can be sure it will only find an (otherwise) empty dir there.
+cp -va test "$AUTOPKGTEST_TMP"/
+cd "$AUTOPKGTEST_TMP"/test
+
+for py in $(py3versions -s 2>/dev/null); do
+	echo "Running testsuite with $py:"
+	for t in testlex.py testyacc.py testcpp.py; do
+		echo "$t:"
+		# Ensure multiprocessing.SemLock is supported (needed for testcpp.py only)
+		if [ "$t" != "testcpp.py" ] || $py -c 'from _multiprocessing import SemLock; sl = SemLock(1, 2, 3, "4", 5); sl.release()' > /dev/null 2>&1; then
+			$py $t
+		else
+			echo "Support for multiprocessing.SemLock missing, skipping test"
+		fi
+	done
+	# cleanup
+	/bin/sh cleanup.sh
+done

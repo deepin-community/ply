@@ -1,0 +1,3 @@
+Tests: upstream-testsuite
+Depends: @, python3-all, python3-six
+Restrictions: allow-stderr

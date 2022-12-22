@@ -1,0 +1,52 @@
+Source: ply
+Section: python
+Priority: optional
+Maintainer: Jeroen Ploemen <jcfp@debian.org>
+Uploaders: Debian Python Team <team+python@tracker.debian.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ python3-all,
+ python3-six,
+ perl
+Build-Depends-Indep:
+ python3-setuptools
+Standards-Version: 4.6.0
+Homepage: https://www.dabeaz.com/ply/
+Vcs-Git: https://salsa.debian.org/python-team/packages/ply.git
+Vcs-Browser: https://salsa.debian.org/python-team/packages/ply
+Rules-Requires-Root: no
+
+Package: python3-ply
+Architecture: all
+Multi-Arch: foreign
+Depends: ${python3:Depends}, ${misc:Depends}
+Provides: ${python3-ply:Provides}
+Breaks: ${python3:Breaks}
+Suggests: python-ply-doc, python3-pkg-resources
+Description: Lex and Yacc implementation for Python3
+ PLY   is   yet  another   implementation   of   lex   and  yacc   for
+ Python.  Although  several  other  parsing tools  are  available  for
+ Python, there are  several reasons why you might want  to take a look
+ at PLY:
+  * It's implemented entirely in Python.
+  * It uses  LR-parsing which is reasonably efficient  and well suited
+    for larger grammars.
+  * PLY  provides most  of  the standard  lex/yacc features  including
+    support for  empty productions, precedence  rules, error recovery,
+    and support for ambiguous grammars.
+  * PLY is  extremely easy  to use and  provides very  extensive error
+    checking.
+ .
+ This package contains the Python 3 module.
+
+Package: python-ply-doc
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Lex and Yacc implementation for Python (documentation)
+ PLY   is   yet  another   implementation   of   lex   and  yacc   for
+ Python.
+ .
+ This package contains the documentation for Ply.
