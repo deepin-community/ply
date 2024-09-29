@@ -2,7 +2,6 @@ Source: ply
 Section: python
 Priority: optional
 Maintainer: Jeroen Ploemen <jcfp@debian.org>
-Uploaders: Debian Python Team <team+python@tracker.debian.org>
 Build-Depends:
  debhelper-compat (= 13),
  dh-python,
@@ -11,10 +10,10 @@ Build-Depends:
  perl
 Build-Depends-Indep:
  python3-setuptools
-Standards-Version: 4.6.0
+Standards-Version: 4.7.0
 Homepage: https://www.dabeaz.com/ply/
-Vcs-Git: https://salsa.debian.org/python-team/packages/ply.git
-Vcs-Browser: https://salsa.debian.org/python-team/packages/ply
+Vcs-Git: https://salsa.debian.org/jcfp/ply.git
+Vcs-Browser: https://salsa.debian.org/jcfp/ply
 Rules-Requires-Root: no
 
 Package: python3-ply

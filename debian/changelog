@@ -1,3 +1,23 @@
+ply (3.11-7) unstable; urgency=medium
+
+  * Control: remove team from uploaders.
+  * Control: point VCS links to private namespace.
+  * Watch: switch from dabeaz.com to github tags.
+  * Control: bump Standards-Version to 4.7.0 (from 4.6.2; no further
+    changes).
+  * Copyright: bump packaging years.
+
+ -- Jeroen Ploemen <jcfp@debian.org>  Thu, 15 Aug 2024 14:42:17 +0000
+
+ply (3.11-6) unstable; urgency=medium
+
+  * Patches: add replace-removed-assert_-with-assertTrue.patch to make
+    the tests work with Python 3.12. (Closes: #1056434)
+  * Control: bump Standards-Version to 4.6.2 (from 4.6.0; no further
+    changes).
+
+ -- Jeroen Ploemen <jcfp@debian.org>  Thu, 30 Nov 2023 16:10:01 +0000
+
 ply (3.11-5) unstable; urgency=medium
 
   [ Ondřej Nový ]
