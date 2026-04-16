@@ -1,2 +1,3 @@
 replace-removed-assert_-with-assertTrue.patch
 relax-lex-tabversion-check.patch
+CVE-2025-56005-remove-picklefile.patch
